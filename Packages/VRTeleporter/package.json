@@ -1,0 +1,17 @@
+{
+  "name": "com.de-panther.vrteleporter",
+  "displayName": "Simple WebXR Teleporter",
+  "version": "0.0.1-preview",
+  "unity": "2019.4",
+  "unityRelease": "7f1",
+  "description": "A port of VR Teleporter by IJEMIN with WebXR support",
+  "keywords": [
+    "webxr",
+    "xr",
+    "vr"
+  ],
+  "author": {
+    "name": "De-Panther",
+    "url": "https://github.com/De-Panther/Simple-WebXR-Teleporter"
+  }
+}
