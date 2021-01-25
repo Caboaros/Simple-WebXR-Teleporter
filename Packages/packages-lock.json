@@ -1,10 +1,52 @@
 {
   "dependencies": {
+    "com.atteneder.gltfast": {
+      "version": "2.5.0",
+      "depth": 1,
+      "source": "registry",
+      "dependencies": {
+        "com.unity.modules.jsonserialize": "1.0.0",
+        "com.unity.modules.unitywebrequest": "1.0.0",
+        "com.unity.modules.unitywebrequesttexture": "1.0.0",
+        "com.unity.mathematics": "1.2.1"
+      },
+      "url": "https://package.openupm.com"
+    },
     "com.de-panther.vrteleporter": {
       "version": "file:VRTeleporter",
       "depth": 0,
       "source": "embedded",
-      "dependencies": {}
+      "dependencies": {
+        "com.de-panther.webxr": "0.6.0-preview"
+      }
+    },
+    "com.de-panther.webxr": {
+      "version": "0.6.0-preview",
+      "depth": 0,
+      "source": "registry",
+      "dependencies": {
+        "com.unity.xr.management": "3.2.13"
+      },
+      "url": "https://package.openupm.com"
+    },
+    "com.de-panther.webxr-input-profiles-loader": {
+      "version": "0.3.1",
+      "depth": 0,
+      "source": "registry",
+      "dependencies": {
+        "com.unity.nuget.newtonsoft-json": "2.0.0",
+        "com.atteneder.gltfast": "2.5.0"
+      },
+      "url": "https://package.openupm.com"
+    },
+    "com.de-panther.webxr-interactions": {
+      "version": "0.6.0-preview",
+      "depth": 0,
+      "source": "registry",
+      "dependencies": {
+        "com.de-panther.webxr": "0.6.0-preview"
+      },
+      "url": "https://package.openupm.com"
     },
     "com.unity.ext.nunit": {
       "version": "1.0.0",
@@ -25,6 +67,27 @@
     "com.unity.ide.vscode": {
       "version": "1.2.3",
       "depth": 0,
+      "source": "registry",
+      "dependencies": {},
+      "url": "https://packages.unity.com"
+    },
+    "com.unity.mathematics": {
+      "version": "1.2.1",
+      "depth": 2,
+      "source": "registry",
+      "dependencies": {},
+      "url": "https://packages.unity.com"
+    },
+    "com.unity.nuget.newtonsoft-json": {
+      "version": "2.0.0",
+      "depth": 1,
+      "source": "registry",
+      "dependencies": {},
+      "url": "https://packages.unity.com"
+    },
+    "com.unity.subsystemregistration": {
+      "version": "1.0.6",
+      "depth": 2,
       "source": "registry",
       "dependencies": {},
       "url": "https://packages.unity.com"
@@ -55,6 +118,33 @@
         "com.unity.modules.ui": "1.0.0",
         "com.unity.modules.imgui": "1.0.0"
       }
+    },
+    "com.unity.xr.legacyinputhelpers": {
+      "version": "2.1.4",
+      "depth": 2,
+      "source": "registry",
+      "dependencies": {},
+      "url": "https://packages.unity.com"
+    },
+    "com.unity.xr.management": {
+      "version": "3.2.16",
+      "depth": 1,
+      "source": "registry",
+      "dependencies": {
+        "com.unity.xr.legacyinputhelpers": "2.1.2",
+        "com.unity.subsystemregistration": "1.0.6"
+      },
+      "url": "https://packages.unity.com"
+    },
+    "com.unity.xr.oculus": {
+      "version": "1.5.0",
+      "depth": 0,
+      "source": "registry",
+      "dependencies": {
+        "com.unity.xr.management": "3.0.6",
+        "com.unity.ugui": "1.0.0"
+      },
+      "url": "https://packages.unity.com"
     },
     "com.unity.modules.ai": {
       "version": "1.0.0",

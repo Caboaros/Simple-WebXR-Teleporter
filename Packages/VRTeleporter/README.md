@@ -93,4 +93,4 @@ Just modify material used by line renderer of Teleport object, and material used
 
 License
 -------
-[MIT](LICENSE)
+[MIT](LICENSE.md)

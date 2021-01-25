@@ -7,7 +7,9 @@ public class VRTeleporter : MonoBehaviour
 
     public GameObject positionMarker; // marker for display ground position
 
-    public Transform bodyTransforn; // target transferred by teleport
+    public Transform bodyTransform; // target transferred by teleport
+
+    public Transform offsetOriginTransform; // origin to set teleportation offset by (e.g. head or camera)
 
     public LayerMask excludeLayers; // excluding for performance
 
@@ -36,24 +38,35 @@ public class VRTeleporter : MonoBehaviour
 
 
     // Teleport target transform to ground position
-    public void Teleport()
+    public bool Teleport()
     {
         if (groundDetected)
         {
-            bodyTransforn.position = groundPos + lastNormal * 0.1f;
+            Vector3 offset = Vector3.zero;
+            if (offsetOriginTransform != null)
+            {
+              offset = offsetOriginTransform.position - bodyTransform.position;
+              offset.y = 0;
+            }
+            bodyTransform.position = (groundPos + lastNormal * 0.1f) - offset;
+            return true;
         }
-        else
-        {
-            Debug.Log("Ground wasn't detected");
-        }
+        return false;
     }
 
     // Active Teleporter Arc Path
     public void ToggleDisplay(bool active)
     {
-        arcRenderer.enabled = active;
-        positionMarker.SetActive(active);
-        displayActive = active;
+        if (displayActive != active)
+        {
+            arcRenderer.enabled = active;
+            positionMarker.SetActive(active);
+            displayActive = active;
+            if (displayActive)
+            {
+                UpdatePath();
+            }
+        }
     }
 
 
