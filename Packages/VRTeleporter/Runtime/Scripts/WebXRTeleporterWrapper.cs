@@ -62,6 +62,12 @@ public class WebXRTeleporterWrapper : MonoBehaviour
 
   void UpdateController()
   {
+    if (!controller.isControllerActive)
+    {
+      teleporter.ToggleDisplay(false);
+      return;
+    }
+
     Vector2 thumbstick = controller.GetAxis2D(WebXRController.Axis2DTypes.Thumbstick);
     Vector2 touchpad = controller.GetAxis2D(WebXRController.Axis2DTypes.Touchpad);
 
