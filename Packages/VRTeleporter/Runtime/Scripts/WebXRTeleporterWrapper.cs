@@ -6,7 +6,8 @@ public class WebXRTeleporterWrapper : MonoBehaviour
   public enum UpdateTypes
   {
     Flat,
-    Controller
+    Controller,
+    ControllerAxis
   }
 
   [SerializeField]
@@ -15,6 +16,14 @@ public class WebXRTeleporterWrapper : MonoBehaviour
   private UpdateTypes updateType = UpdateTypes.Flat;
   [SerializeField]
   private WebXRController controller = null;
+  [SerializeField]
+  private float displayTeleportDelay = 0.2f;
+  [SerializeField]
+  private float minAxisY = 0.5f;
+
+  private float timeShowTeleport = -1f;
+  private bool axisNotZero = false;
+  private bool showTeleport = false;
 
   public void SetUpdateType(UpdateTypes updateType)
   {
@@ -43,6 +52,9 @@ public class WebXRTeleporterWrapper : MonoBehaviour
         break;
       case UpdateTypes.Controller:
         UpdateController();
+        break;
+      case UpdateTypes.ControllerAxis:
+        UpdateControllerAxis();
         break;
     }
   }
@@ -81,6 +93,36 @@ public class WebXRTeleporterWrapper : MonoBehaviour
     if (controller.GetButtonUp(WebXRController.ButtonTypes.Touchpad) && touchpad.y > 0)
     {
       teleporter.Teleport();
+    }
+  }
+
+  void UpdateControllerAxis()
+  {
+    if (!controller.isControllerActive)
+    {
+      teleporter.ToggleDisplay(false);
+      timeShowTeleport = -1f;
+      return;
+    }
+
+    Vector2 thumbstick = controller.GetAxis2D(WebXRController.Axis2DTypes.Thumbstick);
+    Vector2 touchpad = controller.GetAxis2D(WebXRController.Axis2DTypes.Touchpad);
+
+    axisNotZero = thumbstick.y > minAxisY || touchpad.y > minAxisY;
+    if (timeShowTeleport < 0 && axisNotZero)
+    {
+      timeShowTeleport = Time.time + displayTeleportDelay;
+    }
+    showTeleport = timeShowTeleport > 0 && Time.time >= timeShowTeleport;
+    teleporter.ToggleDisplay(showTeleport);
+
+    if (!axisNotZero)
+    {
+      if (showTeleport)
+      {
+        teleporter.Teleport();
+      }
+      timeShowTeleport = -1f;
     }
   }
 }
